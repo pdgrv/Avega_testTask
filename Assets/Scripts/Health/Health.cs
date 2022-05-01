@@ -6,6 +6,7 @@ namespace Avega.HealthSystem
     public class Health : MonoBehaviour, IDamageable
     {
         public event Action<int, int> Changed;
+        public event Action Died;
 
         [SerializeField] private int _maxHealth;
 
@@ -34,6 +35,8 @@ namespace Avega.HealthSystem
         private void Die()
         {
             Debug.Log(gameObject.name + " died.");
+            Died?.Invoke();
+
             Destroy(gameObject);
         }
     }
