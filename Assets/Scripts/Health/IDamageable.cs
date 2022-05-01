@@ -1,4 +1,4 @@
-﻿namespace Avega.Health
+﻿namespace Avega.HealthSystem
 {
     public interface IDamageable
     {

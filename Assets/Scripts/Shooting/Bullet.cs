@@ -1,5 +1,5 @@
 using UnityEngine;
-using Avega.Health;
+using Avega.HealthSystem;
 
 namespace Avega.Shooting
 {
