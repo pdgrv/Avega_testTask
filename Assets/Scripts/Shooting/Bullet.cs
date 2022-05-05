@@ -7,10 +7,12 @@ namespace Avega.Shooting
     {
         [SerializeField] private float _speed;
         [SerializeField] private int _damage;
+        [SerializeField] private Rigidbody _rigidbody;
+        [SerializeField] private Renderer _renderer;
 
-        private void Update()
+        private void Start()
         {
-            transform.position += _speed * Time.deltaTime * transform.forward;
+            _rigidbody.velocity = _speed * transform.forward;
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -24,5 +26,10 @@ namespace Avega.Shooting
         }
 
         private void SelfDestroy() => Destroy(gameObject);
+
+        public void SetColor(Color targetColor)
+        {
+            _renderer.material.color = targetColor;
+        }
     }
 }

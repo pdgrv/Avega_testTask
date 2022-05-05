@@ -1,3 +1,6 @@
+using Avega.Inventory;
+using Avega.Inventory.ColoredCubes;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +13,26 @@ namespace Avega.Shooting
         [SerializeField] private Bullet _bulletTemplate;
         [SerializeField] private float _shootRate;
         [SerializeField] private Transform _shootPoint;
+        [SerializeField] private PlayerBag _playerBag;
+
+        private Color _bulletsColor = Color.grey;
 
         private float _shootTimer = 0f;
+
+        private void OnEnable()
+        {
+            _playerBag.CubePickedUp += OnCubePickedUp;
+        }
+
+        private void OnDisable()
+        {
+            _playerBag.CubePickedUp -= OnCubePickedUp;
+        }
+
+        private void OnCubePickedUp(Color pickedColor, int count)
+        {
+            _bulletsColor = pickedColor;
+        }
 
         private void Update()
         {
@@ -26,7 +47,8 @@ namespace Avega.Shooting
 
         private void Shoot()
         {
-            Instantiate(_bulletTemplate, _shootPoint.position, _shootPoint.rotation, null);
+            Instantiate(_bulletTemplate, _shootPoint.position, _shootPoint.rotation, null)
+                .SetColor(_bulletsColor);
         }
     }
 }
