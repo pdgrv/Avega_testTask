@@ -25,8 +25,6 @@ namespace Avega.Inventory
                     CubePickedUp?.Invoke(cube.Color, _pickedColoredCubes[cube.Color]);
                 }
 
-                Debug.Log(_pickedColoredCubes);
-
                 pickable.Pickup();
             }
         }

@@ -1,8 +1,4 @@
 using Avega.Inventory;
-using Avega.Inventory.ColoredCubes;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Avega.Shooting

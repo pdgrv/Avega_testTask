@@ -34,10 +34,9 @@ namespace Avega.HealthSystem
 
         private void Die()
         {
-            Debug.Log(gameObject.name + " died.");
             Died?.Invoke();
 
-            Destroy(gameObject);
+            Destroy(transform.root.gameObject);
         }
     }
 }
