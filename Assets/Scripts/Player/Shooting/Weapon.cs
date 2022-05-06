@@ -1,10 +1,13 @@
 using Avega.Inventory;
+using System;
 using UnityEngine;
 
 namespace Avega.Shooting
 {
     public class Weapon : MonoBehaviour
     {
+        public event Action Shooted;
+
         [SerializeField] private FP_Input _playerInput;
         [SerializeField] private Bullet _bulletTemplate;
         [SerializeField] private float _shootRate;
@@ -45,6 +48,8 @@ namespace Avega.Shooting
         {
             Instantiate(_bulletTemplate, _shootPoint.position, _shootPoint.rotation, null)
                 .SetColor(_bulletsColor);
+
+            Shooted?.Invoke();
         }
     }
 }
