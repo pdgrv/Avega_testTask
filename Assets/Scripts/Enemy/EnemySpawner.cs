@@ -1,4 +1,5 @@
 using UnityEngine;
+using Avega.Others;
 
 namespace Avega.Enemy
 {
@@ -7,6 +8,7 @@ namespace Avega.Enemy
         [SerializeField] private Player _player;
         [SerializeField] private Enemy _enemyTemplate;
         [SerializeField] private float _spawnCooldown = 3f;
+        [SerializeField] private float _playerMinSpawnDistance = 10f;
         [SerializeField] private Vector3 _spawnRange = new Vector3(100f, 0, 100f);
 
         private float _time;
@@ -32,8 +34,26 @@ namespace Avega.Enemy
 
         private Vector3 CalculateSpawnPosition()
         {
-            return transform.position
-                + new Vector3(Random.Range(-_spawnRange.x / 2, _spawnRange.x / 2), 0, Random.Range(-_spawnRange.z / 2, _spawnRange.z / 2));
+            Vector3 spawnPoint;
+
+            do
+            {
+                spawnPoint = transform.position
+                    + new Vector3(Random.Range(-_spawnRange.x / 2, _spawnRange.x / 2), 0, Random.Range(-_spawnRange.z / 2, _spawnRange.z / 2));
+            } while (CheckSpawnConditions(spawnPoint));
+
+            return spawnPoint;
+        }
+
+        private bool CheckSpawnConditions(Vector3 spawnPoint)
+        {
+            if (Vector3.Distance(spawnPoint, _player.transform.position) < _playerMinSpawnDistance)
+                return true;
+
+            if (_player.HeadCamera.IsPointInSight(spawnPoint))
+                return true;
+
+            return false;
         }
 
         private void OnDrawGizmosSelected()
