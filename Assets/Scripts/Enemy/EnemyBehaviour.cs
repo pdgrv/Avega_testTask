@@ -25,9 +25,6 @@ namespace Avega.Enemy
                 case EnemyState.Attack:
                     _currentState = _enemyAttack;
                     break;
-                default:
-                    Debug.Log(name + " enemy wrong state");
-                    break;
             }
 
             _currentState.LocalUpdate();
