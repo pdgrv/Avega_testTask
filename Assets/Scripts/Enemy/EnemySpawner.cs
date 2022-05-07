@@ -10,6 +10,7 @@ namespace Avega.Enemy
         [SerializeField] private float _spawnCooldown = 3f;
         [SerializeField] private float _playerMinSpawnDistance = 10f;
         [SerializeField] private Vector3 _spawnRange = new Vector3(100f, 0, 100f);
+        [SerializeField] private LayerMask _wallLayer;
 
         private float _time;
 
@@ -50,7 +51,7 @@ namespace Avega.Enemy
             if (Vector3.Distance(spawnPoint, _player.transform.position) < _playerMinSpawnDistance)
                 return true;
 
-            if (_player.HeadCamera.IsPointInSight(spawnPoint))
+            if (_player.HeadCamera.IsPointInSight(spawnPoint, _wallLayer))
                 return true;
 
             return false;

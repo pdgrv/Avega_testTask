@@ -4273,6 +4273,9 @@ MonoBehaviour:
   _spawnCooldown: 3
   _playerMinSpawnDistance: 10
   _spawnRange: {x: 100, y: 0, z: 100}
+  _wallLayer:
+    serializedVersion: 2
+    m_Bits: 32768
 --- !u!4 &1278691911
 Transform:
   m_ObjectHideFlags: 0
